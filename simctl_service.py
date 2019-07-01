@@ -6,7 +6,8 @@ import time
 
 from config import config
 import logging
-logger = logging.getLogger()
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 @retry(retry_on_exception=lambda e: isinstance(e, CalledProcessError),

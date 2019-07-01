@@ -31,4 +31,23 @@ class Config(object):
     AGENT_TYPE = 'Mobile'  # iOS/Android/Mobile
 
 
+class ProdConfig(Config):
+    IS_DEV = False
+    SERVER_ADDRESS = "gs-autoauto-beta.citrite.net"
+
+
+class DevConfig(Config):
+    SERVER_ADDRESS = "127.0.0.1:8081"
+    # GIT_REPO_RELATIVE_PATH = '/Users/yangwa/Automation/secure-web-automation'
+    IS_DEV = True
+
+
+configMap = {
+    "development": DevConfig,
+    "production": ProdConfig,
+    "default": DevConfig
+}
+
+config = configMap[os.getenv('AUTOAUTO_CONFIG') or "default"]
+
 __all__ = ["config"]
